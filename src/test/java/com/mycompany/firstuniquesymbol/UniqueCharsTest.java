@@ -25,21 +25,21 @@ class UniqueCharsTest {
   public void uniqueCharInWord(){
     UniqueChars myChar = new UniqueChars();
     List<String> words = Arrays.asList("friend");
-    assertEquals("Unique char -> 'I'", myChar.getFirstUniqueChar(words));
+    assertEquals("Unique char -> 'f'", myChar.getFirstUniqueChar(words));
   }
 
   @Test
-  public void uniqueCharInTwoWords(){
+  public void noUniqueCharInTwoWords(){
     UniqueChars myChar = new UniqueChars();
     List<String> words = Arrays.asList("friend","field");
-    assertEquals("Unique char -> 'a'", myChar.getFirstUniqueChar(words));
+    assertEquals("There are no unique char", myChar.getFirstUniqueChar(words));
   }
 
   @Test
   public void uniqueCharInThreeWords(){
     UniqueChars myChar = new UniqueChars();
-    List<String> words = Arrays.asList("friend", "field", "fifi", "answer");
-    assertEquals("There are no unique char", myChar.getFirstUniqueChar(words));
+    List<String> words = Arrays.asList("friend", "field", "answer");
+    assertEquals("Unique char -> 'a'", myChar.getFirstUniqueChar(words));
   }
 
   @Test
@@ -53,7 +53,7 @@ class UniqueCharsTest {
   public void uniqueCharInFiveWords(){
     UniqueChars myChar = new UniqueChars();
     List<String> words = Arrays.asList("pineapple","promise", "friend","fill", "field", "fifi", "answer");
-    assertEquals("Unique char -> 'p'", myChar.getFirstUniqueChar(words));
+    assertEquals("Unique char -> 'i'", myChar.getFirstUniqueChar(words));
   }
 
   @Test

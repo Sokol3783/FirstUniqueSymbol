@@ -15,7 +15,7 @@ public class UniqueChars {
     Optional<Character> first = allUniqueChars.stream().collect(
             Collectors.groupingBy(Function.identity(), LinkedHashMap::new,
                 Collectors.summingInt(e -> 1)))
-        .entrySet().stream().filter(s -> s.getValue() > 0)
+        .entrySet().stream().filter(s -> s.getValue() == 1)
         .filter(s -> s.getKey().compareTo(' ') != 0)
         .map(s -> s.getKey()).findFirst();
     if (first.isPresent()) {
@@ -28,6 +28,7 @@ public class UniqueChars {
     return words.stream().map( s -> {
       for (int i = 0; i < s.length(); i++) {
         if (s.indexOf(s.charAt(i), s.indexOf(s.charAt(i)) + 1) == -1) {
+          System.out.println(s.charAt(i));
           return s.charAt(i);
         }
       }
