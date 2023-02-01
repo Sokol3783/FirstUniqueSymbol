@@ -1,22 +1,17 @@
 package com.mycompany.firstuniquesymbol;
 
-import java.util.Scanner;
+import java.util.List;
 
 public class App {
 
   public void main(String[] args) {
-    System.out.println("Enter the text:");
-    Scanner scanner = new Scanner(System.in);
-    while (scanner.hasNext()){
-      if (scanner.hasNextLine()) {
-        System.out.println(getUniqueSymbol(scanner.nextLine()));
-      }
-    }
+    System.out.println(getUniqueSymbol(args.toString()));
   }
 
   private char getUniqueSymbol(String text) {
-
-
-    return '1';
+    CollectorNonRepetitiveWords uniqueWordsCollector = new CollectorNonRepetitiveWords();
+    List<String> words = uniqueWordsCollector.getUniqueWords(text);
+    UniqueCharacterFinder characterFinder = new UniqueCharacterFinder();
+    return characterFinder.getFirstUniqueChar(words);
   }
 }
