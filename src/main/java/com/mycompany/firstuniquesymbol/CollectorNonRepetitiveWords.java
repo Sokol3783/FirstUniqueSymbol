@@ -6,10 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Function;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class UniqueWords {
+public class CollectorNonRepetitiveWords {
 
   //get only unique words with keeping order
   public List<String> getUniqueWords(String text) {

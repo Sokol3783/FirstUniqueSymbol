@@ -2,15 +2,14 @@ package com.mycompany.firstuniquesymbol;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class UniqueChars {
+public class UniqueCharacterFinder {
 
   //return message of result finding
-  public String getFirstUniqueChar(List<String> words){
+  public Character getFirstUniqueChar(List<String> words){
     List<Character> allUniqueChars = getAllUniqueChars(words);
     Optional<Character> first = allUniqueChars.stream().collect(
             Collectors.groupingBy(Function.identity(), LinkedHashMap::new,
@@ -19,21 +18,19 @@ public class UniqueChars {
         .filter(s -> s.getKey().compareTo(' ') != 0)
         .map(s -> s.getKey()).findFirst();
     if (first.isPresent()) {
-      return "Unique char -> '" + first.get() + "'";
+      return first.get();
     }
-    return "There are no unique char";
+    return ' ';
   }
 
   private List<Character> getAllUniqueChars(List<String> words) {
     return words.stream().map( s -> {
       for (int i = 0; i < s.length(); i++) {
         if (s.indexOf(s.charAt(i), s.indexOf(s.charAt(i)) + 1) == -1) {
-          System.out.println(s.charAt(i));
           return s.charAt(i);
         }
       }
       return ' ';
     }).collect(Collectors.toList());
   }
-
 }
