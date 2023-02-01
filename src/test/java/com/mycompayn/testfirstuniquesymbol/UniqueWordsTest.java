@@ -1,7 +1,6 @@
 package com.mycompayn.testfirstuniquesymbol;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.mycompany.firstuniquesymbol.UniqueWords;
 import java.util.Arrays;
@@ -15,38 +14,43 @@ public class UniqueWordsTest {
     UniqueWords uniqueWords = new UniqueWords();
     List<String> words = uniqueWords.getUniqueWords("letter");
     assertEquals(1, words.size());
-    assertTrue("letter".compareTo(words.get(0)) == 0);
+    assertEquals(0, "letter".compareTo(words.get(0)));
   }
 
   @Test
   public void testWordsWithoutUpperCaseOnlyUniqueWords() {
     UniqueWords uniqueWords = new UniqueWords();
-    List<String> expectedWords = Arrays.asList("i", "send", "letter", "to", "my", "friends");
+    List<String> expectedWords = Arrays.asList("i", "send", "letter", "to", "my", "friend");
     List<String> words = uniqueWords.getUniqueWords("i send letter to my friend");
     assertEquals(expectedWords.size(), words.size());
-    assertTrue(expectedWords.equals(words));
+    assertEquals(expectedWords, words);
   }
 
   @Test
   public void testWordsWithoutUpperCaseWords() {
     UniqueWords uniqueWords = new UniqueWords();
-    List<String> expectedWords = Arrays.asList("i", "send", "letter", "to", "my", "friend", "and", "answer","me");
+    List<String> expectedWords = Arrays.asList("i", "send", "letter", "and", "answer","me");
     List<String> words = uniqueWords.getUniqueWords("i send letter to my friend and my friend answer to me");
     assertEquals(expectedWords.size(), words.size());
-    assertTrue(expectedWords.equals(words));
+    assertEquals(expectedWords, words);
   }
 
   @Test
   public void testWordsWithUpperCaseOnlyUniqueWords() {
     UniqueWords uniqueWords = new UniqueWords();
-    List<String> expectedWords = Arrays.asList("I", "send", "letter", "to", "my", "friend", "answer","me", "My", "from", "Kiev");
-    List<String> words = uniqueWords.getUniqueWords("I send letter to my friend from Kiev. My friend answer from Kiev");
+    List<String> expectedWords = Arrays.asList("I", "send", "letter", "to", "my","Kiev","My", "answer","me",  "Maroko");
+    List<String> words = uniqueWords.getUniqueWords("I send letter to my friend from Kiev. My friend answer me from Maroko");
     assertEquals(expectedWords.size(), words.size());
-    assertTrue(expectedWords.equals(words));
+    assertEquals(expectedWords, words);
   }
 
   @Test
   public void testWordsWithUpperCase() {
+    UniqueWords uniqueWords = new UniqueWords();
+    List<String> expectedWords = Arrays.asList("I", "send", "letter", "to", "my", "My","answer", "me");
+    List<String> words = uniqueWords.getUniqueWords("I send letter to my friend from Kiev. My friend answer me from Kiev");
+    assertEquals(expectedWords.size(), words.size());
+    assertEquals(expectedWords, words);
   }
 
 }
