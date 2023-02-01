@@ -12,14 +12,14 @@ public class CollectorNonRepetitiveWords {
 
   //get only unique words with keeping order
   public List<String> getUniqueWords(String text) {
-    String[] words = text.replaceAll("[^a-zA-Z ]", "").split(" ");
+    String[] words = text.replaceAll("[^a-zA-Z ]", " ").split(" ");
     Map<String, Integer> countedWords = countWords(words);
     return filterWords(countedWords);
   }
 
   private List<String> filterWords(Map<String, Integer> countedWords) {
-    return countedWords.entrySet().stream().filter(s -> s.getValue() == 1).map(Entry::getKey).collect(
-        Collectors.toList());
+    return countedWords.entrySet().stream().filter(s ->s.getValue() == 1)
+        .map(Entry::getKey).collect(Collectors.toList());
   }
 
   private Map<String, Integer> countWords(String[] words) {
